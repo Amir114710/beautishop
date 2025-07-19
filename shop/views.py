@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import  TemplateView , ListView , View , DetailView
 
+from mixins import LogoutRequirdMixins
 from shop.models import Favorite, Product , Category , Comment , CategoryParent
 
 class ShopView(ListView):
@@ -45,7 +46,7 @@ class ProductDetail(View):
 #                 context['is_liked'] = False
 #         return context
     
-class CommentView(View):
+class CommentView(LogoutRequirdMixins , View):
     def post(self , request , slug):
         product = Product.objects.get(slug=slug)
         user = request.user

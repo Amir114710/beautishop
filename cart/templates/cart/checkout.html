@@ -38,10 +38,10 @@
             </select>
             <br>
             {% else %}
-            <a class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium"><span>ادرس جدید</span></a>
+            <a href="{% url 'cart:order_add' %}?next={% url 'cart:order_detail' order.id %}" class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium"><span>ادرس جدید</span></a>
             {% endif %}
             <div class="cs_height_30 cs_height_lg_20"></div>
-            <a class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium"><span> اضافه کردن ادرس</span></a>
+            <a  href="{% url 'cart:order_add' %}?next={% url 'cart:order_detail' order.id %}" class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium"><span> اضافه کردن ادرس</span></a>
             <div class="cs_height_30 cs_height_lg_20"></div>
             {% if request.user.addresses.all %}
             <button class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium" type="submit"><span>رفتن به درگاه</span></button>
@@ -86,7 +86,6 @@
             </li>
         </ul>
         <div class="cs_height_40 cs_height_lg_30"></div>
-        <button class="cs_btn cs_style_1 cs_fs_18 w-100"><span>سفارش دهید</span></button>
         </div>
     </div>
     </div>

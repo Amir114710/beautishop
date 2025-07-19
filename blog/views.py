@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView , DetailView , View , TemplateView
 
 from blog.models import Article , Category , Tag , Comment
+from mixins import *
 
 class ArticleListView(ListView):
     template_name = 'blog/blog.html'
@@ -59,7 +60,7 @@ class SearchBox(TemplateView):
         recent_articles = Article.objects.filter(is_publish=True)[:2]
         return render(request , self.template_name , {'articles':queryset , 'category':categories , 'tags':tags , 'recent_articles':recent_articles})
     
-class CommentView(View):
+class CommentView(LogoutRequirdMixins , View):
     def post(self , request , pk):
         art = Article.objects.get(id=pk)
         user = request.user
