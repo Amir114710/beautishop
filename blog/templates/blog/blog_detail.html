@@ -80,7 +80,13 @@ blog_detail
             </a>
         </div>
         <h1>{{article.title}}</h1>
-        <img src="{{article.image.url}}" alt="Blog Details">
+            <a href="" class="cs_video_block cs_style_1 cs_center cs_bg_filed cs_video_open" data-src="">
+            <video class="cs_video_block cs_style_1 cs_center cs_bg_filed cs_video_open" id="video-class" controls>
+            <source src="{{article.video.url}}" type="video/mp4">
+            <source src="{{article.video.url}}" type="video/ogg">
+            Your browser does not support the video tag.
+            </video>      
+            </a>   
         <p>
             {{article.discription|safe}}
         </p>

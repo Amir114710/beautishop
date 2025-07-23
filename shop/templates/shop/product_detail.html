@@ -6,7 +6,6 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    <div class="cs_height_45 cs_height_lg_45"></div>
     <ol class="breadcrumb cs_fs_18 mb-0 rtl">
     <li class="breadcrumb-item"><a href="{% url 'home:main' %}">خانه/</a></li>
     <li class="breadcrumb-item"><a href="{% url 'shop:shop_main' %}">فروشگاه/</a></li>
@@ -58,6 +57,19 @@
                 <input type="number" name="quantity" class="cs_quantity_input cs_primary_color cs_medium" style="background-color: none!important;border: none!important;width: 1em;" value="">
                 <button class="cs_quantity_button cs_increment">                        
                 </button>
+            </div>
+            </div>
+        </div>
+        <div class="cs_quantity_wrap">
+            <div class="cs_light">رنگ ها</div>
+            <div>
+            <div class="cs_quantity cs_style_1">
+                <select name="color" class="cs_quantity_input cs_primary_color cs_medium">
+                    <option>_____</option>
+                    {% for x in product.color.all %}
+                    <option value="{{x.color}}">{{x.color}}</option>
+                    {% endfor %}
+                </select>
             </div>
             </div>
         </div>

@@ -30,13 +30,27 @@ class Category(models.Model):
         verbose_name_plural = 'دسته بندی ها'
         verbose_name = 'دسته بندی'
 
+class Color(models.Model):
+    color = models.CharField(max_length=550 , verbose_name='رنگ')
+    created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.color
+    
+    class Meta:
+        ordering = ('-created',)
+        verbose_name_plural = 'رنگ ها'
+        verbose_name = 'رنگ'
+
 class Product(models.Model):
     title = models.CharField(max_length=1500 , verbose_name='نام کالا')
     english_title = models.CharField(max_length=1500 , verbose_name='نام اینگلیسی کالا')
     slug = models.SlugField(null=True , blank=True)
     category = models.ManyToManyField(Category , related_name='category_product' , verbose_name='دسته بندی')
     category_parent = models.ForeignKey(CategoryParent , on_delete=models.CASCADE , related_name='parent_product' , verbose_name='سر دسته' , null=True , blank=True)
+    color = models.ManyToManyField(Color , related_name='product_color' , verbose_name='رنگ ها' , null=True , blank=True)
     price = models.BigIntegerField(default=0 , verbose_name='قیمت کالا به تومان')
+    post_price = models.BigIntegerField(default=0 , verbose_name='قیمت پسنت کالا به تومان' , null=True , blank=True)
     discount_percent = models.BigIntegerField(null=True , blank=True , verbose_name='درصد تخفبف')
     discount_test = models.BigIntegerField(null=True , blank=True , verbose_name='درصد تخفبف' , help_text='لطفا تکرار شود')
     new_price = models.BigIntegerField(null=True , blank=True , verbose_name='قیمت تخفیف خورده' , help_text='(این فیلد نیاز به پر شدن ندارد)')

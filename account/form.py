@@ -31,7 +31,7 @@ class Edite_Profile_Form(forms.ModelForm):
             'username':forms.TextInput(attrs={'class': 'cs_form_field' , 'placeholder':'نام کاربری'}),
             'Full_name' :forms.TextInput(attrs={'class': 'cs_form_field' , 'placeholder':'نام و نام خانوادگی'}),
             'email' :forms.TextInput(attrs={'class': 'cs_form_field' , 'placeholder':'ایمیل'}),
-        }
+        }                                                                                                                                              
 
 class AddressCreationForm(forms.ModelForm):
     user = forms.IntegerField(required=False)

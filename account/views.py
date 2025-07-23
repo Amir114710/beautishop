@@ -38,6 +38,9 @@ class CheckOtpCode(LoginRequirdMixins , FormView):
             user , is_created = User.objects.get_or_create(phone = otp.phone)
             login(self.request , user)
             otp.delete()
+            next_page = self.request.GET.get('next')
+            if next_page:
+                return redirect(next_page)
             return redirect('account:edit_profile')       
         else:
             form.add_error(cd['code'] , 'this information is not correct')
@@ -86,6 +89,23 @@ class AddAdressView(AddressRequirdMixins , View):
     def get(self , request):
         form = AddressCreationForm()
         return render(request , 'account/add_address.html' , {'form':form})
+
+def address_edite(request , pk):
+    if request.user.is_authenticated == True:
+        address = get_object_or_404(Address , id=pk)
+        form = AddressCreationForm(instance=address)
+        if request.method == 'POST':
+            form = AddressCreationForm(request.POST  , request.FILES ,instance=address)
+            if form.is_valid():
+                address = form.save(commit=False)
+                address.user = request.user
+                address.save()
+                return redirect('account:profile')
+        else:
+            form = AddressCreationForm(instance=address)
+        return render(request , 'account/edit_address.html' , {'form':form})
+    else:
+        return redirect('home_app:home')
          
 class AddressListView(ListView):
     template_name = 'account/addresses.html'
@@ -112,3 +132,8 @@ class OrderDetailView(View):
     def get(self , request , pk):
         order = get_object_or_404(Order , id=pk)
         return render(request , self.template_name , {'order':order})
+    
+class AdminOrderList(ListView):
+    template_name = 'account/orderlist_admin.html'
+    model = Order
+    context_object_name = 'orders'

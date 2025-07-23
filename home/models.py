@@ -85,13 +85,48 @@ class Questions(models.Model):
         verbose_name = 'سوال'
 
 class CustomerClub(models.Model):
-    email = models.EmailField(verbose_name='ایمیل' , null=True , blank=True)
+    phone = models.BigIntegerField(verbose_name='شماره تلفن' , null=True , blank=True)
     created = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f'email'
+        return self.phone
     
     class Meta:
         ordering = ('-created',)
         verbose_name_plural = 'باشگاه مشتریان'
         verbose_name = 'باشگاه مشتریان'
+
+class Video(models.Model):
+    video = models.FileField(upload_to='home/video/' , verbose_name = 'ویدیو')
+    created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'video'
+    
+    class Meta:
+        ordering = ('-created',)
+        verbose_name_plural = 'ویدیو ها'
+        verbose_name = 'ویدیو'
+
+class Banner(models.Model):
+    title = models.CharField(max_length=2500 , verbose_name='تیتر بنر')
+    image = models.FileField(upload_to='home/banner/' , verbose_name='تصویر')
+    created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        ordering = ('-created',)
+        verbose_name_plural = 'بنر ها'
+        verbose_name = 'بنر'
+
+class Law(models.Model):
+    content = RichTextUploadingField(verbose_name='توضیحات')
+
+    def __str__(self):
+        return f'توضیحات'
+    
+    class Meta:
+        verbose_name_plural = 'قوانین'
+        verbose_name = 'قانون'

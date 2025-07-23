@@ -36,6 +36,11 @@
             <li class="{% if request.resolver_match.url_name == 'whishlist'%}active{% endif %}">
               <a href="{% url 'account:whishlist' %}"><span> علاقه مندی ها</span></a>
             </li>
+            {% if request.user.is_admin == True %}
+            <li class="{% if request.resolver_match.url_name == 'admin_order'%}active{% endif %}">
+              <a href="{% url 'account:admin_order' %}"><span> لیست سفارشات</span></a>
+            </li>
+            {% endif %}
             <li>
               <a href="{% url 'account:logout' %}"><span>خروج از سیستم</span></a>
             </li>
@@ -68,7 +73,7 @@
                       {% endif %}
                       <td>{{x.total_price}} تومان</td>
                       <td class="text-end">
-                        <a class="cs_text_btn" href="{% url 'account:orderdetail' x.id %}">
+                        <a class="cs_text_btn" href="{% url 'account:orderdetail' x.pk %}">
                           <span>مشاهده جزئیات</span>
                         </a>
                       </td>

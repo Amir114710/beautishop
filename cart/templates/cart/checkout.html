@@ -38,10 +38,10 @@
             </select>
             <br>
             {% else %}
-            <a href="{% url 'cart:order_add' %}?next={% url 'cart:order_detail' order.id %}" class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium"><span>ادرس جدید</span></a>
+            <a href="{% url 'account:add_address' %}?next={% url 'cart:order_detail' order.id %}" class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium"><span>ادرس جدید</span></a>
             {% endif %}
             <div class="cs_height_30 cs_height_lg_20"></div>
-            <a  href="{% url 'cart:order_add' %}?next={% url 'cart:order_detail' order.id %}" class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium"><span> اضافه کردن ادرس</span></a>
+            <a  href="{% url 'account:add_address' %}?next={% url 'cart:order_detail' order.id %}" class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium"><span> اضافه کردن ادرس</span></a>
             <div class="cs_height_30 cs_height_lg_20"></div>
             {% if request.user.addresses.all %}
             <button class="cs_btn cs_style_1 cs_fs_18 cs_coupon_btn cs_medium" type="submit"><span>رفتن به درگاه</span></button>
@@ -75,12 +75,15 @@
             </div>
             <p>اندازه: <span class="cs_primary_color">{{x.product.value}} </span></p>
             <p>تعداد: {{x.quantity}}</p>
+            <p>رنگ: {{x.color}}</p>
+            <p>هزینه پست: {{x.post_price}}</p>
             </li>
             {% endfor %}
         </ul>
         <div class="cs_height_40 cs_height_lg_30"></div>
         <ul class="cs_card_price_list cs_type_1 cs_mp_0">
             <li class="cs_total_price">
+            {{text}}
             <span class="cs_fs_18 cs_primary_color">مجموع</span>
             <span class="cs_fs_18 cs_primary_color">{{order.total_price}} تومان</span>
             </li>

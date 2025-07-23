@@ -33,6 +33,14 @@
             <li class="{% if request.resolver_match.url_name == 'edit_profile'%}active{% endif %}">
               <a href="{% url 'account:edit_profile' %}"><span>جزئیات حساب</span></a>
             </li>
+            <li class="{% if request.resolver_match.url_name == 'whishlist'%}active{% endif %}">
+              <a href="{% url 'account:whishlist' %}"><span> علاقه مندی ها</span></a>
+            </li>
+            {% if request.user.is_admin == True %}
+            <li class="{% if request.resolver_match.url_name == 'admin_order'%}active{% endif %}">
+              <a href="{% url 'account:admin_order' %}"><span> لیست سفارشات</span></a>
+            </li>
+            {% endif %}
             <li>
               <a href="{% url 'account:logout' %}"><span>خروج از سیستم</span></a>
             </li>
@@ -48,7 +56,7 @@
                       <td class="cs_accent_color">در انتظار</td>
             {% endif %}
         </div>
-        <div class="cs_plr_25">
+        <div class="cs_plr_25" id="download-area1">
             <ul class="cs_card_price_list cs_mp_0">
             <li class="cs_card_price_list_seperator_head cs_primary_color">
                 <span class="cs_medium">موارد</span>
@@ -58,6 +66,16 @@
             <li>
                 <span class="cs_light"> {{x.product.title}}</span>
                 <span class="cs_light">{{x.product.price}}تومان</span>
+                <span class="cs_light"> تعداد:</span>
+                <span class="cs_light">{{x.quantity}}</span>
+                <span class="cs_light"> رنگ:</span>
+                <span class="cs_light">{{x.color}}</span>
+                <span class="cs_light"> وضعیت پرداخت:</span>
+                {% if order.is_pay %}
+                <span class="cs_light">پرداخت شده</span>
+                {% else %}
+                <span class="cs_light">پرداخت نشده</span>
+                {% endif %}
             </li>
             {% endfor %}
             </ul>
@@ -72,13 +90,14 @@
                 {% if order.addresses %}
                 <p>در حال ارسال</p>
                 {% else %}
-                <a href="{% url 'cart:order_detail' order.id %}">ادامه پرداخت
+                <a href="{% url 'cart:order_detail' order.pk %}">ادامه پرداخت
                 </a>
                 {% endif %}
             </div>
             </div>
         </div>
         </div>
+        <button onclick="downloadSection()" class="btn btn-primary">📄پرینت</button>
     </div>
     </div>
 </div>

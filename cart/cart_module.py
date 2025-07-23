@@ -25,16 +25,16 @@ class Cart:
         del self.session[CART_SESSION_ID]
         self.save()
 
-    def add(self, product, quantity):
+    def add(self, product, quantity , color):
         product_id = str(product.id)
-        if product_id not in self.cart:
-            self.cart[product_id] = {'quantity': 0 , 'price': str(product.price) , 'id' : product.id}
+        if product_id not in self.cart or color != self.cart[product_id]['color'] :
+            self.cart[product_id] = {'quantity': 0 , 'price': str(product.price) , 'post_price':str(product.post_price) , 'color':color , 'id' : product.id}
         self.cart[product_id]['quantity'] += int(quantity)
         self.save()
 
     def total(self):
         cart = self.cart.values()
-        total = sum(int(item['price']) * int(item['quantity']) for item in cart)
+        total = sum(int(item['price']) * int(item['quantity']) + int(item['post_price']) * int(item['quantity']) for item in cart)
         return total
 
     def delete(self , id):

@@ -68,6 +68,8 @@ html {
   line-height: 1.5em;
   font-weight: 400;
   overflow-x: clip;
+  text-align: right!important;
+  font-size: 15px!important;
 }
 
 h1,
@@ -11445,6 +11447,9 @@ label span {
     padding-right: 15px;
     margin-right: 15px;
   }
+  #video-class{
+  margin-left: 0em;
+  }
 }
 
 .cs_averate_rating_wrap_1 .cs_rating {
@@ -11457,6 +11462,9 @@ label span {
     -webkit-transform: scale(1.5);
             transform: scale(1.5);
     margin: 4px 0 7px 23px;
+  }
+  #video-class{
+  margin-left: 0em;
   }
 }
 .cs_averate_rating_wrap_1 .cs_rating_number {
@@ -11514,15 +11522,24 @@ label span {
   .cs_review_list .cs_progress {
     width: 260px;
   }
+  #video-class{
+  margin-left: 0em;
+  }
 }
 @media (max-width: 390px) {
   .cs_review_list .cs_progress {
     width: 210px;
   }
+  #video-class{
+  margin-left: 0em;
+  }
 }
 @media (max-width: 340px) {
   .cs_review_list .cs_progress {
     width: 180px;
+  }
+  #video-class{
+  margin-left: 0em;
   }
 }
 
@@ -11547,6 +11564,9 @@ label span {
 @media (max-width: 380px) {
   .cs_sort_by_wrap {
     padding: 5px 0px;
+  }
+  #video-class{
+  margin-left: 0em;
   }
 }
 .cs_sort_by_wrap .cs_sort_by_title {
@@ -11600,6 +11620,9 @@ label span {
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  #video-class{
+  margin-left: 0em;
+  }
 }
 .cs_product_reviews_wrap_1 .cs_product_reviews_wrap_1_right {
   -webkit-box-flex: 1;
@@ -11637,6 +11660,9 @@ label span {
 @media (max-width: 991px) {
   .cs_details.cs_style_1 {
     padding-left: 0px;
+  }
+  #video-class{
+  margin-left: 0em;
   }
 }
 .cs_details.cs_style_1 .cs_quantity_wrap {
@@ -11800,6 +11826,9 @@ label span {
             flex-direction: column;
     gap: 10px;
   }
+  #video-class{
+  margin-left: 0em;
+  }
 }
 .cs_newsletter.cs_style_1 .cs_btn.cs_style_1:hover,
 .cs_newsletter.cs_style_2 .cs_btn.cs_style_1:hover,
@@ -11829,6 +11858,9 @@ label span {
         -ms-flex-pack: center;
             justify-content: center;
   }
+  #video-class{
+  margin-left: 0em;
+  }
 }
 .cs_newsletter.cs_style_1 .cs_newsletter_title {
   margin-bottom: 15px;
@@ -11842,6 +11874,9 @@ label span {
         -ms-flex: none;
             flex: none;
     max-width: 650px;
+  }
+  #video-class{
+  margin-left: 0em;
   }
 }
 
@@ -11868,6 +11903,9 @@ label span {
 @media (max-width: 575px) {
   .cs_newsletter.cs_style_2 {
     padding: 58px 20px 64px;
+  }
+  #video-class{
+  margin-left: 0em;
   }
 }
 .cs_newsletter.cs_style_2 .cs_newsletter_in {
@@ -11896,6 +11934,9 @@ label span {
   .cs_newsletter.cs_style_2 .cs_star_shape_1 {
     display: none;
   }
+  #video-class{
+  margin-left: 0em;
+  }
 }
 .cs_newsletter.cs_style_2 .cs_star_shape_2 {
   position: absolute;
@@ -11907,6 +11948,9 @@ label span {
 @media (max-width: 575px) {
   .cs_newsletter.cs_style_2 .cs_star_shape_2 {
     display: none;
+  }
+  #video-class{
+  margin-left: 0em;
   }
 }
 .cs_newsletter.cs_style_2 .cs_star_shape_3 {
@@ -11921,6 +11965,9 @@ label span {
 @media (max-width: 575px) {
   .cs_newsletter.cs_style_2 .cs_star_shape_3 {
     display: none;
+  }
+  #video-class{
+  margin-left: 0em;
   }
 }
 
@@ -11975,3 +12022,7 @@ label span {
       -ms-flex: 1;
           flex: 1;
 }/*# sourceMappingURL=style.css.map */
+
+#video-class{
+  margin-left: 0em;
+}

@@ -28,9 +28,11 @@ class CartAddView(View):
     def post(self , request , slug):
         product = get_object_or_404(Product , slug = slug)
         quantity = request.POST.get('quantity')
+        color = request.POST.get('color')
+        print(color)
         cart = Cart(request)
         if int(quantity) > 0:
-            cart.add(product , quantity)
+            cart.add(product , quantity , color)
         else:
             pass
         return redirect(reverse('cart:cart_main_list'))
@@ -51,7 +53,7 @@ class OrderCreationView(AddressRequirdMixins , View):
         cart = Cart(request)
         order = Order.objects.create(user = request.user , total_price = cart.total())
         for item in cart:
-            OrderItem.objects.create(order=order , product = item['product'] , quantity = item['quantity'] , price = item['price'])
+            OrderItem.objects.create(order=order , product = item['product'] , quantity = item['quantity'] , color = item['color'] , price = item['price'] , post_price = item['post_price'])
         cart.remove_cart()
         return redirect('cart:order_detail' , order.id)
     
@@ -66,7 +68,7 @@ class ApplyDiscountView(AddressRequirdMixins , View):
         order.save()
         discount_code.quantity -= 1
         discount_code.save()
-        return redirect('cart:order_detail' , order.id)
+        return render(request , 'cart/checkout.html' , {'order':order , 'text':'تخفیف اعمال شد'})
 
 class ApplyAddress(AddressRequirdMixins , View):
     def post(self , request , pk):
@@ -77,5 +79,8 @@ class ApplyAddress(AddressRequirdMixins , View):
         for x in addresses:
             if x.address == address:
                 order.addresses = x
+        for x in order.items.all():
+            x.product.sale_count += 1
+            x.product.save()
         order.save()
         return redirect('pay:main_pay' , order.id)

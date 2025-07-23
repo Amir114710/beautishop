@@ -45,6 +45,7 @@ class Article(models.Model):
     little_discription = RichTextUploadingField(verbose_name='توضیحات کوتاه')
     discription = RichTextUploadingField(verbose_name='توضیحات')
     image = models.FileField(upload_to='blog/image/' , verbose_name='تصویر')
+    video = models.FileField(upload_to='blog/video/' , verbose_name='ویدیو' , null=True , blank=True)
     is_publish = models.BooleanField(default=True , verbose_name='نمایش داده شود')
     created = models.DateTimeField(auto_now_add=True)
 
